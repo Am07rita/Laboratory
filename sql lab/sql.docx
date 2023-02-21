@@ -21,7 +21,7 @@ DEPARTMENT_ID  NUMBER (4)
 | mgr_id        | int         | YES  |     | NULL    |       |
 | department_id | int         | YES  |     | NULL    |       |
 
-2. Insert the following data into EMPLOYEE table.
+3. Insert the following data into EMPLOYEE table.
 EMPLOYEE_ID                LAST_NAME        JOB_ID     SALARY   COMM_PCT   MGR_ID       DEPARTMENT_ID
 198                          Connell        SH_CLERK   2600        2.5       124            50
 199                          Grant          SH_CLERK   2600        2.2       124            50
