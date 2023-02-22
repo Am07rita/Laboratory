@@ -326,3 +326,140 @@ select * from employee;
 
 =>select last_name,mgr_id from employee where salary>3000 and mgr_id=101 and job_id='ad_mgr';
 Empty set (0.00 sec)
+
+
+
+(ASSIGNMENT OF SCENARIO SQL)
+create table student(Registration_number varchar(10) primary key,Name varchar(20) not null,Branch varchar(10) not null,Contact bigint,DOB date,Date_Of_Joining date,Address varchar(30),Email_Id varchar(20));
+
+insert into student(Registration_number,Name,Branch,Contact,DOB,Date_Of_Joining,Address,Email_Id)values('AF8765','Ajay','MCA',9876543223,'2000-08-07','2021-02-03','Chennai','ajay@gmail.com');
+insert into student(Registration_number,Name,Branch,Contact,DOB,Date_Of_Joining,Address,Email_Id)values('AF8766','Supriya','BCA',9876587653,'1998-06-08','2019-06-09','Kolkata','Supriya@gmail.com'),('AF8767','Arpita','MSc.IT',9866544567,'1997-07-05','2020-07-05','Kolkata','arpita@gmail.com'),('AF8768','Rohit','BBA',987654323,'1998-09-02','2020-08-05','Ranchi','rohit@gmail.com'),('AF8769','Deepak','MBA',98765456,'1998-08-03','2022-09-12','Bangalore','deepak@gmail.com');
+
+desc student;
++---------------------+-------------+------+-----+---------+-------+
+| Field               | Type        | Null | Key | Default | Extra |
++---------------------+-------------+------+-----+---------+-------+
+| Registration_number | varchar(10) | NO   | PRI | NULL    |       |
+| Name                | varchar(20) | NO   |     | NULL    |       |
+| Branch              | varchar(10) | NO   |     | NULL    |       |
+| Contact             | bigint      | YES  |     | NULL    |       |
+| DOB                 | date        | YES  |     | NULL    |       |
+| Date_Of_Joining     | date        | YES  |     | NULL    |       |
+| Address             | varchar(30) | YES  |     | NULL    |       |
+| Email_Id            | varchar(20) | YES  |     | NULL    |       |
++---------------------+-------------+------+-----+---------+-------+
+
+
+select * from student;
++---------------------+---------+--------+------------+------------+-----------------+-----------+-------------------+
+| Registration_number | Name    | Branch | Contact    | DOB        | Date_Of_Joining | Address   | Email_Id          |
++---------------------+---------+--------+------------+------------+-----------------+-----------+-------------------+
+| AF8765              | Ajay    | MCA    | 9876543223 | 2000-08-07 | 2021-02-03      | Chennai   | ajay@gmail.com    |
+| AF8766              | Supriya | BCA    | 9876587653 | 1998-06-08 | 2019-06-09      | Kolkata   | Supriya@gmail.com |
+| AF8767              | Arpita  | MSc.IT | 9866544567 | 1997-07-05 | 2020-07-05      | Kolkata   | arpita@gmail.com  |
+| AF8768              | Rohit   | BBA    |  987654323 | 1998-09-02 | 2020-08-05      | Ranchi    | rohit@gmail.com   |
+| AF8769              | Deepak  | MBA    |   98765456 | 1998-08-03 | 2022-09-12      | Bangalore | deepak@gmail.com  |
++---------------------+---------+--------+------------+------------+-----------------+-----------+-------------------+
+
+
+
+create table marks(subject_code varchar(10) foreign key,Subject_1 int,Subject_2 int,Subject_3 int,Semester int,Registration_number varchar(20));
+
+create table subject(subject_code varchar(10) primary key,Subject_1 int,Subject_2 int,Subject_3 int,Semester int,Registration_number varchar(10), foreign key(Registration_number) references student(Registration_number));
+
+desc subject;
++---------------------+-------------+------+-----+---------+-------+
+| Field               | Type        | Null | Key | Default | Extra |
++---------------------+-------------+------+-----+---------+-------+
+| subject_code        | varchar(10) | NO   | PRI | NULL    |       |
+| Subject_1           | int         | YES  |     | NULL    |       |
+| Subject_2           | int         | YES  |     | NULL    |       |
+| Subject_3           | int         | YES  |     | NULL    |       |
+| Semester            | int         | YES  |     | NULL    |       |
+| Registration_number | varchar(10) | YES  | MUL | NULL    |       |
++---------------------+-------------+------+-----+---------+-------+
+
+
+insert into subject(subject_code,Subject_1,Subject_2,Subject_3,Semester,Registration_number)values('HB001',89,87,98,4,'AF8765'),('HB002',79,92,89,3,'AF8766'),('HB003',97,93,92,2,'AF8767'),('HB004',86,87,85,3,'AF8768'),('HB004',89,65,78,4,'AF8769');
+
+
+select * from subject;
++--------------+-----------+-----------+-----------+----------+---------------------+
+| subject_code | Subject_1 | Subject_2 | Subject_3 | Semester | Registration_number |
++--------------+-----------+-----------+-----------+----------+---------------------+
+| HB001        |        89 |        87 |        98 |        4 | AF8765              |
+| HB002        |        79 |        92 |        89 |        3 | AF8766              |
+| HB003        |        97 |        93 |        92 |        2 | AF8767              |
+| HB004        |        86 |        87 |        85 |        3 | AF8768              |
+| HB005        |        89 |        65 |        78 |        4 | AF8769              |
++--------------+-----------+-----------+-----------+----------+---------------------+
+
+
+
+
+Q. Display a students information after updating his/her details.
+
+update student set Name='Ajit'where Registration_number='AF8765';
+select * from student;
++---------------------+---------+--------+------------+------------+-----------------+-----------+-------------------+
+| Registration_number | Name    | Branch | Contact    | DOB        | Date_Of_Joining | Address   | Email_Id          |
++---------------------+---------+--------+------------+------------+-----------------+-----------+-------------------+
+| AF8765              | Ajit    | MCA    | 9876543223 | 2000-08-07 | 2021-02-03      | Chennai   | ajay@gmail.com    |
+| AF8766              | Supriya | BCA    | 9876587653 | 1998-06-08 | 2019-06-09      | Kolkata   | Supriya@gmail.com |
+| AF8767              | Arpita  | MSc.IT | 9866544567 | 1997-07-05 | 2020-07-05      | Kolkata   | arpita@gmail.com  |
+| AF8768              | Rohit   | BBA    |  987654323 | 1998-09-02 | 2020-08-05      | Ranchi    | rohit@gmail.com   |
+| AF8769              | Deepak  | MBA    |   98765456 | 1998-08-03 | 2022-09-12      | Bangalore | deepak@gmail.com  |
+| AF8770              | Ritik   | MCA    |  987654334 | 1998-09-07 | 2022-08-07      | Bangalore | ritik@gmail.com   |
+| AF8771              | Ria     | BCA    |  987654334 | 1998-09-07 | 2022-08-07      | pune      | ria@gmail.com     |
+| AF8772              | Seema   | MCA    |  987654894 | 1997-08-07 | 2022-08-07      | mumbai    | seema@gmail.com   |
++---------------------+---------+--------+------------+------------+-----------------+-----------+-------------------+
+
+
+Q. Display the average marks of all the students.
+=>select sub.subject_code,st.Registration_number,st.Name,sub.Subject_1,sub.Subject_2,sub.Subject_3,((subject_1+Subject_2+Subject_3)/3) as average_marks from Student st inner join subject sub on st.Registration_number=sub.Registration_number;
++--------------+---------------------+---------+-----------+-----------+-----------+---------------+
+| subject_code | Registration_number | Name    | Subject_1 | Subject_2 | Subject_3 | average_marks |
++--------------+---------------------+---------+-----------+-----------+-----------+---------------+
+| HB001        | AF8765              | Ajay    |        89 |        87 |        98 |       91.3333 |
+| HB002        | AF8766              | Supriya |        79 |        92 |        89 |       86.6667 |
+| HB003        | AF8767              | Arpita  |        97 |        93 |        92 |       94.0000 |
+| HB004        | AF8768              | Rohit   |        86 |        87 |        85 |       86.0000 |
+| HB005        | AF8769              | Deepak  |        89 |        65 |        78 |       77.3333 |
++--------------+---------------------+---------+-----------+-----------+-----------+---------------+
+
+
+Q.display the sum of marks of students where semester = 3.
+
+=>select (Subject_1+Subject_2+Subject_3)as sum_of_marks,semester from subject where semester=3;
++--------------+----------+
+| sum_of_marks | semester |
++--------------+----------+
+|          260 |        3 |
+|          258 |        3 |
++--------------+----------+
+
+Q. display the reg_no,student name, marks whose sum of marks is greater than 250.
+
+=> select sub.subject_code,st.Registration_number,st.Name,(subject_1+Subject_2+Subject_3) as sum_of_marks from Student st inner join subject sub on st.Registration_number=sub.Registration_number where (sub.Subject_1+sub.Subject_2+sub.Subject_3)>250;
++--------------+---------------------+---------+--------------+
+| subject_code | Registration_number | Name    | sum_of_marks |
++--------------+---------------------+---------+--------------+
+| HB001        | AF8765              | Ajay    |          274 |
+| HB002        | AF8766              | Supriya |          260 |
+| HB003        | AF8767              | Arpita  |          282 |
+| HB004        | AF8768              | Rohit   |          258 |
++--------------+---------------------+---------+--------------+
+
+Q.calculate the percentage for the marks for all the students. Display the reg_no, student_name, branch, semester and percentage.
+
+select sub.subject_code,st.Registration_number,st.Name,sub.Subject_1,sub.Subject_2,sub.Subject_3,((subject_1+Subject_2+Subject_3)/3) as average_marks,(((Subject_1+Subject_2+Subject_3)/3)*100/100) as percentage from Student st inner join subject sub on st.Registration_number=sub.Registration_number;
++--------------+---------------------+---------+-----------+-----------+-----------+---------------+-------------+
+| subject_code | Registration_number | Name    | Subject_1 | Subject_2 | Subject_3 | average_marks | percentage  |
++--------------+---------------------+---------+-----------+-----------+-----------+---------------+-------------+
+| HB001        | AF8765              | Ajit    |        89 |        87 |        98 |       91.3333 | 91.33333333 |
+| HB002        | AF8766              | Supriya |        79 |        92 |        89 |       86.6667 | 86.66666667 |
+| HB003        | AF8767              | Arpita  |        97 |        93 |        92 |       94.0000 | 94.00000000 |
+| HB004        | AF8768              | Rohit   |        86 |        87 |        85 |       86.0000 | 86.00000000 |
+| HB005        | AF8769              | Deepak  |        89 |        65 |        78 |       77.3333 | 77.33333333 |
++--------------+---------------------+---------+----------
+
